@@ -1,0 +1,11 @@
+Package: ukTownMetrics
+Title: Analysis of UK Town Metrics
+Version: 0.0.0.9000
+Authors@R: 
+    person("Arun", "Krishnasamy", , "akri0026@student.monash.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: This package provides an interactive dashboard to analyze metrics of UK towns such as employment, education, and income levels.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
