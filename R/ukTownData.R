@@ -35,13 +35,14 @@ ukTownData <- ukTownData |>
     population = population_2011,
     size = size_flag,
     income = income_flag,
-    earnings_above_0 = activity_at_age_19_employment_with_earnings_above_0,
-    earnings_above_10000 = activity_at_age_19_employment_with_earnings_above_10_000,
-    edu_level1_2 = highest_level_qualification_achieved_by_age_22_level_1_to_level_2,
-    edu_level3_5 = highest_level_qualification_achieved_by_age_22_level_3_to_level_5,
-    edu_level6 = highest_level_qualification_achieved_by_age_22_level_6_or_above,
+    earnings_above_0_at_19 = activity_at_age_19_employment_with_earnings_above_0,
+    earnings_above_10000_at_19 = activity_at_age_19_employment_with_earnings_above_10_000,
+    edu_level1_2_at_22 = highest_level_qualification_achieved_by_age_22_level_1_to_level_2,
+    edu_level3_5_at_22 = highest_level_qualification_achieved_by_age_22_level_3_to_level_5,
+    edu_level6_at_22 = highest_level_qualification_achieved_by_age_22_level_6_or_above,
     edu_score = education_score
   )
+
 
 ukTownData <- ukTownData %>%
   mutate(
@@ -57,6 +58,18 @@ ukTownData <- ukTownData %>%
   ) |>
   select(-town) |>
   rename(town = town_cleaned)
+
+ukTownData <- ukTownData |>
+  mutate(
+    income = as.factor(income),
+    size = as.factor(size),
+    population = as.numeric(ukTownData$population),
+    earnings_above_0_at_19 = as.numeric(earnings_above_0_at_19),
+    earnings_above_10000_at_19 = as.numeric(earnings_above_10000_at_19),
+    edu_level1_2_at_22 = as.numeric(edu_level1_2_at_22),
+    edu_level3_5_at_22 = as.numeric(edu_level3_5_at_22),
+    edu_level6_at_22 = as.numeric(edu_level6_at_22)
+  )
 
 
 usethis::use_data(ukTownData, overwrite = TRUE)
@@ -139,5 +152,11 @@ retrieve_selected_columns <- function(data, columns) {
 retrieve_town_data <- function(data, town_name) {
   data %>%
     filter(town == town_name)
+}
+
+# Shiny app(UK Scocio-economic explorer)
+
+run_app <- function() {
+  shiny::runApp("R/app.R")
 }
 
