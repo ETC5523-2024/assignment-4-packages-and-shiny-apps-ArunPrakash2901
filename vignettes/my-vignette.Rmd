@@ -2,7 +2,7 @@
 title: "Does Town Size Influence Youth Employment Opportunities?"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{my-vignette}
+  %\VignetteIndexEntry{Does Town Size Influence Youth Employment Opportunities?}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -23,6 +23,10 @@ library(broom)
 ```
 
 The common perception that moving to a large city automatically leads to better job opportunities has been widely accepted for years. However, this analysis seeks to question that assumption by exploring whether 19-year-olds have better employment opportunities in smaller towns compared to bigger cities. Understanding this dynamic could offer valuable insights for young adults in the early stages of their career planning.
+
+```{r, include=FALSE}
+load("D:/SEM_2/ETC5523 CWD/Assignments/Assignment 4/assignment-4-packages-and-shiny-apps-ArunPrakash2901/data/ukTownData.rda")
+```
 
 ```{r}
 ukTownData1 <- ukTownData |>

@@ -1,4 +1,23 @@
-url: ~
-template:
-  bootstrap: 5
+pkgdown:
+  url: 'https://etc5523-2024.github.io/assignment-4-packages-and-shiny-apps-ArunPrakash2901'
+  template:
+    package: pkgdown
+    bootstrap: 5
 
+navbar:
+  structure:
+    left: [home, reference, articles, news]
+    right: [github]
+  components:
+    left:
+      - text: "Home"
+        href: index.html
+    right:
+      - text: "GitHub"
+        href: 'https://github.com/ETC5523-2024/assignment-4-packages-and-shiny-apps-ArunPrakash2901'
+
+destination: docs
+
+home:
+  title: "UK Town Socio-Economic Explorer"
+  description: "This package explores UK town socio-economic data with simulations."
