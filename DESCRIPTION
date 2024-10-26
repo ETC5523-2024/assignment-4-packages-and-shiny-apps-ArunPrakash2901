@@ -12,11 +12,13 @@ RoxygenNote: 7.3.2
 Depends: 
     R (>= 2.10)
 Imports: 
+    readxl,
     shiny,
     plotly,
     dplyr,
     ggplot2,
-    forcats
+    forcats, 
+    stringr
 LazyData: true
 Suggests: 
     knitr,

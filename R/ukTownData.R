@@ -4,7 +4,7 @@ library(dplyr)
 library(janitor)
 library(stringr)
 
-ukTownData <- read_excel("data-raw/data.xlsx", sheet = 2)
+data <- readxl::read_excel("data-raw/data.xlsx")
 
 ukTownData <- ukTownData |>
   clean_names()  # simplifies column names
