@@ -1,5 +1,5 @@
 pkgdown:
-  url: 'https://your-username.github.io/repo-name'
+  url: 'https://etc5523-2024.github.io/assignment-4-packages-and-shiny-apps-ArunPrakash2901/'
   destination: docs
   template:
     package: pkgdown
