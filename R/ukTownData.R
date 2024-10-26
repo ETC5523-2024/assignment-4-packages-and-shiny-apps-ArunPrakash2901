@@ -4,7 +4,7 @@ library(dplyr)
 library(janitor)
 library(stringr)
 
-data <- readxl::read_excel("data-raw/data.xlsx")
+load("data/ukTownData.rda")
 
 ukTownData <- ukTownData |>
   clean_names()  # simplifies column names
@@ -59,7 +59,7 @@ ukTownData <- ukTownData %>%
   select(-town) |>
   rename(town = town_cleaned)
 
-ukTownData <- ukTownData |>
+ukTownData1 <- ukTownData |>
   mutate(
     income = as.factor(income),
     size = as.factor(size),
@@ -72,7 +72,7 @@ ukTownData <- ukTownData |>
   )
 
 
-usethis::use_data(ukTownData, overwrite = TRUE)
+usethis::use_data(ukTownData1, overwrite = TRUE)
 
 #' Display BUA or BUASD status based on town name
 #'
@@ -157,6 +157,6 @@ retrieve_town_data <- function(data, town_name) {
 # Shiny app(UK Scocio-economic explorer)
 
 run_app <- function() {
-  shiny::runApp("R/app.R")
+  shiny::runApp("inst/shiny-app.R")
 }
 
