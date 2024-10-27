@@ -2,7 +2,7 @@
 #'
 #' A dataset containing demographic, economic, and educational information about various towns in the UK.
 #'
-#' @format A data frame with [number of rows] rows and 11 variables:
+#' @format A data frame with 1104 rows and 11 variables:
 #' \describe{
 #'   \item{population}{Population of the town (numeric)}
 #'   \item{size}{Size classification of the town (character, e.g., "Small Towns")}
@@ -18,3 +18,4 @@
 #' }
 #' @source TidyTuesday Project 2024, "Educational attainment of young people in English towns", available on the TidyTuesday GitHub repository: \url{https://github.com/rfordatascience/tidytuesday}
 "ukTownData1"
+  ``
