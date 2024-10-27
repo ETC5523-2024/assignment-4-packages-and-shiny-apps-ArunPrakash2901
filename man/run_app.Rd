@@ -10,7 +10,7 @@ run_app()
 Runs the Shiny application.
 }
 \description{
-This function launches the Shiny application included in the \code{ausbirthplace} package.
+This function launches the Shiny application included in the \code{ukTownMetrics} package.
 }
 \examples{
 \dontrun{

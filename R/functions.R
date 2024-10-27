@@ -92,7 +92,7 @@ retrieve_town_data <- function(data, town_name) {
 #' }
 run_app <- function() {
   app_dir <- system.file("ukTownMetrics", package = "ukTownMetrics")
-  shiny::runApp("inst/ukTownMetrics", display.mode = "normal")
+  shiny::runApp("inst/ukTownMetrics/app.r", display.mode = "normal")
 }
 
 
