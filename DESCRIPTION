@@ -5,20 +5,12 @@ Authors@R:
     person("Arun", "Krishnasamy", , "akri0026@student.monash.edu", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: This package provides an interactive dashboard to simulate metrics of UK town.
-License: MIT + file LICENSE
+License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Depends: 
     R (>= 2.10)
-Imports: 
-    readxl,
-    shiny,
-    plotly,
-    dplyr,
-    ggplot2,
-    forcats, 
-    stringr
 LazyData: true
 Suggests: 
     knitr,

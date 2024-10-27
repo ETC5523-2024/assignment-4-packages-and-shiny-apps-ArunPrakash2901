@@ -15,7 +15,6 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup, include=FALSE}
-library(tidyverse)
 library(dplyr)
 library(ggplot2)
 library(kableExtra)
@@ -25,15 +24,15 @@ library(broom)
 The common perception that moving to a large city automatically leads to better job opportunities has been widely accepted for years. However, this analysis seeks to question that assumption by exploring whether 19-year-olds have better employment opportunities in smaller towns compared to bigger cities. Understanding this dynamic could offer valuable insights for young adults in the early stages of their career planning.
 
 ```{r, include=FALSE}
-load("D:/SEM_2/ETC5523 CWD/Assignments/Assignment 4/assignment-4-packages-and-shiny-apps-ArunPrakash2901/data/ukTownData.rda")
+load("D:/SEM_2/ETC5523 CWD/Assignments/Assignment 4/assignment-4-packages-and-shiny-apps-ArunPrakash2901/data/ukTownData1.rda")
 ```
 
 ```{r}
-ukTownData1 <- ukTownData |>
-  filter(earnings_above_0_at_19 != "*") |>
-  mutate(Employment_Rate = as.numeric(earnings_above_0_at_19), 
+ukTownData1 <- ukTownData1 |>
+  dplyr::filter(earnings_above_0_at_19 != "*") |>
+  dplyr::mutate(Employment_Rate = as.numeric(earnings_above_0_at_19), 
          Size_Classification = as.factor(size)) |>
-  filter(!Size_Classification %in% c("Inner London BUA", "Outer london BUA", "Not BUA", "Other Small BUAs"))
+  dplyr::filter(!Size_Classification %in% c("Inner London BUA", "Outer london BUA", "Not BUA", "Other Small BUAs"))
 ```
 
 The box plot below (@fig-boxplot) illustrates the distribution of employment rates across different town sizes. Small towns demonstrate a higher median employment rate for 19-year-olds compared to cities, which show both the lowest median and the largest variation in employment outcomes.
@@ -41,7 +40,7 @@ The box plot below (@fig-boxplot) illustrates the distribution of employment rat
 ```{r}
 #| label: fig-boxplot
 #| fig-cap: "The distribution of employment rates at age 19 across different town sizes. Cities have the lowest median and largest variation, while Small Towns have the highest variation but a median similar to Medium and Large Towns."
-ggplot(ukTownData1, aes(x = Size_Classification, y = Employment_Rate)) +
+ggplot2::ggplot(ukTownData1, aes(x = Size_Classification, y = Employment_Rate)) +
   geom_boxplot(fill = "steelblue") +
   labs(title = "Employment Rate Distribution at Age 19 by Town Size",
        x = "Town Size Classification",
@@ -56,10 +55,10 @@ To quantify the employment opportunities in each town size, the table below (@tb
 #| label: tbl-employment-rate
 #| tbl-cap: "The average employment rates for 19-year-olds across different town sizes. Small towns exhibit the highest average employment rates, while cities show the lowest."
 employment_summary <- ukTownData1 |>
-  group_by(Size_Classification) |>
-  summarise(Average_Employment_Rate = mean(Employment_Rate, na.rm = TRUE))
+  dplyr::group_by(Size_Classification) |>
+  dplyr::summarise(Average_Employment_Rate = mean(Employment_Rate, na.rm = TRUE))
 
-kable(employment_summary) |> 
+kableExtra::kable(employment_summary) |> 
   kable_styling(font_size = 15)
 ```
 
@@ -69,7 +68,7 @@ To confirm whether these differences in employment rates across town sizes are s
 #| label: tbl-anova
 #| tbl-cap: "ANOVA Results for the Effect of Town Size Classification on Employment Rates at Age 19"
 anova_result <- aov(Employment_Rate ~ Size_Classification, data = ukTownData1)
-kable(tidy(anova_result)) |> 
+kableExtra::kable(tidy(anova_result)) |> 
   kable_styling(font_size = 10)
 ```
 
@@ -79,10 +78,10 @@ While ANOVA identifies that differences exist between town sizes, it does not sp
 #| label: tbl-posthoc
 #| tbl-cap: "Tukey HSD Post-hoc Test results showing pairwise comparisons between town sizes. Small and Medium Towns exhibit significantly higher employment rates than Cities and Large Towns."
 posthoc_result <- TukeyHSD(anova_result) |> 
-  tidy() |> 
-  select(-term, -null.value)
+  broom::tidy() |> 
+  dplyr::select(-term, -null.value)
 
-kable(posthoc_result) |> 
+kableExtra::kable(posthoc_result) |> 
   kable_styling(font_size = 10) 
 ```
 
@@ -93,7 +92,7 @@ The Tukey HSD results are further visualized in the plot below (@fig-HSD), highl
 ```{r}
 #| label: fig-HSD
 #| fig.cap: "The figure provides a quick visual overview of which pairwise comparisons are significant."
-tukey_hsd <- ggplot(posthoc_result, aes(x = estimate, y = reorder(contrast, estimate))) +
+tukey_hsd <- ggplot2::ggplot(posthoc_result, aes(x = estimate, y = reorder(contrast, estimate))) +
   geom_point(aes(color = adj.p.value < 0.05), size = 3) + 
   geom_errorbarh(aes(xmin = conf.low, xmax = conf.high), height = 0.2) + 
   geom_vline(xintercept = 0, linetype = "dashed", color = "red") +
