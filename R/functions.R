@@ -81,7 +81,7 @@ retrieve_town_data <- function(data, town_name) {
 
 #' Launch the UkTownMetrics Shiny Application
 #'
-#' This function launches the Shiny application included in the `ausbirthplace` package.
+#' This function launches the Shiny application included in the `ukTownMetrics` package.
 #'
 #' @return Runs the Shiny application.
 #' @export

@@ -15,16 +15,18 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup, include=FALSE}
+library(ukTownMetrics)
 library(dplyr)
 library(ggplot2)
 library(kableExtra)
 library(broom)
+library(knitr)
 ```
 
 The common perception that moving to a large city automatically leads to better job opportunities has been widely accepted for years. However, this analysis seeks to question that assumption by exploring whether 19-year-olds have better employment opportunities in smaller towns compared to bigger cities. Understanding this dynamic could offer valuable insights for young adults in the early stages of their career planning.
 
 ```{r, include=FALSE}
-load("D:/SEM_2/ETC5523 CWD/Assignments/Assignment 4/assignment-4-packages-and-shiny-apps-ArunPrakash2901/data/ukTownData1.rda")
+data("ukTownData1", package = "ukTownMetrics")
 ```
 
 ```{r}
@@ -102,3 +104,41 @@ tukey_hsd <- ggplot2::ggplot(posthoc_result, aes(x = estimate, y = reorder(contr
   theme(legend.position = "none")
 tukey_hsd
 ```
+
+## Functions for Additional Analysis
+
+The following functions, developed as part of the package, offer users tools to filter and explore the dataset efficiently:
+
+1. **`display_bua_buasd_status()`**: Verifies if a given town is a Built-Up Area (BUA) or Built-Up Area Sub-Division (BUASD).
+    
+```{r}
+display_bua_buasd_status(ukTownData1, "Ely")
+```
+    
+
+2. **`list_bua_buasd_towns()`**: Provides a list of towns classified as either BUA or BUASD.
+
+```{r, results='asis'}
+
+list_bua_buasd_towns(ukTownData1)
+```
+    
+
+3. **`retrieve_selected_columns()`**: Extracts specific columns for analysis.
+
+```{r}
+retrieve_selected_columns(ukTownData1, "earnings_above_0_at_19")
+```
+
+
+4. **`retrieve_town_data()`**: Returns detailed data for a specified town.
+
+```{r}
+retrieve_town_data(ukTownData1, "Chard")
+```
+
+
+## Conclusion
+
+This analysis indicates that young adults in smaller towns generally enjoy higher employment rates at age 19 than their counterparts in larger cities, challenging the notion that urban environments always provide better early-career opportunities. Statistical analysis supports this observation, revealing significant employment rate differences between town sizes. The functions included here serve as tools for extended exploration of this data, allowing for quick verification and extraction of information on towns based on BUA classifications and other parameters.
+
